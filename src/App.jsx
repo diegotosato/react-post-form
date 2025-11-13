@@ -17,7 +17,10 @@ function App() {
 
 
   //add variable to manage a message if the ajax call is success
-  const [message, setMessage] = useState(null)
+  const [message, setMessage] = useState({
+    status: null,
+    text: ''
+  })
 
 
   //function to handle the form submit
@@ -25,13 +28,14 @@ function App() {
     //reset default action on submit
     e.preventDefault()
 
+    //reset object status with his static copy
+    // setFormData(resetData)
+    setFormData(resetData)
+
     //print in console the object to see what i am submitting
     console.log(formData);
 
-    //reset object status with his static copy
-    setFormData(resetData)
-
-    //Ajax Call on submit
+    // //Ajax Call on submit
     axios.post(endpoint, formData, {
       headers: { 'Content-Type': 'application/json' }
     })
@@ -41,12 +45,24 @@ function App() {
         if (res.status === 201) {
           console.log('success');
           console.log(formData);
-          setMessage(true)
+          setMessage({ text: 'your request is accepted', status: true })
         }
       })
-      .catch(err =>
-        console.log(err.message)
+      .catch(err => {
+        console.log(err.message);
+        setMessage({ text: `${err.message}`, status: false })
+      }
+
+
       )
+  }
+
+  function handleChange(e) {
+    //destructure of the infos that i submit
+    const { name, value, checked, type } = e.target
+
+    setFormData({ ...formData, [name]: (type === 'checkbox' ? checked : value) })
+
   }
 
   return (
@@ -63,24 +79,24 @@ function App() {
         {/* Author */}
         <div>
           <label htmlFor="author">Author</label>
-          <input type="text" name="author" placeholder="Author's name" value={formData.author} onChange={e => setFormData({ ...formData, author: e.target.value })} />
+          <input type="text" name="author" id="author" placeholder="Author's name" value={formData.author} onChange={handleChange} />
         </div>
 
         {/* Title */}
         <div>
           <label htmlFor="title">Title</label>
-          <input type="text" name="title" placeholder="Title's name" value={formData.title} onChange={e => setFormData({ ...formData, title: e.target.value })} />
+          <input type="text" name="title" id="title" placeholder="Title's name" value={formData.title} onChange={handleChange} />
         </div>
 
         {/* Post text */}
         <div>
           <label htmlFor="body">Post's text</label>
-          <textarea name="body" rows="4" value={formData.body} onChange={e => setFormData({ ...formData, body: e.target.value })} />
+          <textarea name="body" id="body" rows="4" value={formData.body} onChange={handleChange} />
         </div>
 
         {/* Checkbox */}
         <div>
-          <input type="checkbox" name="public" id="public" checked={formData.public} onChange={e => setFormData({ ...formData, public: e.target.checked })} />
+          <input type="checkbox" name="public" id="public" checked={formData.public} onChange={handleChange} />
           <label htmlFor="public">Post must be public</label>
         </div>
 
@@ -91,7 +107,8 @@ function App() {
 
 
       {
-        message && <p>Form send successfully</p>
+        (message.status ? <p className={(message.status && 'green')}>{message.text}</p>
+          : <p className={(!message.status && 'red')}>{message.text}</p>)
       }
     </>
   )
