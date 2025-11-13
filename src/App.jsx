@@ -67,49 +67,51 @@ function App() {
 
   return (
     <>
-      <h1>Form multifields</h1>
-
-      <br />
-      <br />
-      <br />
-      <br />
-
-      <form onSubmit={handleSubmit}>
-
-        {/* Author */}
-        <div>
-          <label htmlFor="author">Author</label>
-          <input type="text" name="author" id="author" placeholder="Author's name" value={formData.author} onChange={handleChange} />
-        </div>
-
-        {/* Title */}
-        <div>
-          <label htmlFor="title">Title</label>
-          <input type="text" name="title" id="title" placeholder="Title's name" value={formData.title} onChange={handleChange} />
-        </div>
-
-        {/* Post text */}
-        <div>
-          <label htmlFor="body">Post's text</label>
-          <textarea name="body" id="body" rows="4" value={formData.body} onChange={handleChange} />
-        </div>
-
-        {/* Checkbox */}
-        <div>
-          <input type="checkbox" name="public" id="public" checked={formData.public} onChange={handleChange} />
-          <label htmlFor="public">Post must be public</label>
-        </div>
-
-        <button type="submit">Send</button>
-
-      </form>
+      <div className="title">
+        <h1>Form multifields</h1>
+      </div>
 
 
+      <div className="container">
 
-      {
-        (message.status ? <p className={(message.status && 'green')}>{message.text}</p>
-          : <p className={(!message.status && 'red')}>{message.text}</p>)
-      }
+        <form onSubmit={handleSubmit}>
+
+          {/* Author */}
+          <div className="form-field">
+            <label htmlFor="author">Author</label>
+            <input type="text" name="author" id="author" placeholder="Author's name" value={formData.author} onChange={handleChange} required />
+          </div>
+
+          {/* Title */}
+          <div className="form-field">
+            <label htmlFor="title">Title</label>
+            <input type="text" name="title" id="title" placeholder="Title's name" value={formData.title} onChange={handleChange} required />
+          </div>
+
+          {/* Post text */}
+          <div className="form-field">
+            <label htmlFor="body">Post's text</label>
+            <textarea name="body" id="body" rows="4" value={formData.body} onChange={handleChange} required />
+          </div>
+
+          {/* Checkbox */}
+          <div className="form-field checkbox-field">
+            <input type="checkbox" name="public" id="public" checked={formData.public} onChange={handleChange} />
+            <label htmlFor="public">Post must be public</label>
+          </div>
+
+          <button type="submit">Send</button>
+
+        </form>
+
+
+
+        {
+          (message.status ? <p className={(message.status && 'green')}>{message.text}</p>
+            : <p className={(!message.status && 'red')}>{message.text}</p>)
+        }
+
+      </div>
     </>
   )
 }

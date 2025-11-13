@@ -2,6 +2,98 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.title {
+  padding: 1.5rem 0;
+  background-color: black;
+}
+
+.title h1 {
+  text-align: center;
+  color: white;
+}
+
+.container {
+  width: 50%;
+  margin: 0 auto;
+  padding-top: 2rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.form-field label {
+  font-weight: bold;
+  font-size: 2rem;
+  color: rgb(110, 110, 110);
+}
+
+.form-field input {
+  border: 1px solid cornflowerblue;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  position: relative;
+}
+
+.form-field input[type=text] {
+  font-size: 1.5rem;
+  color: cornflowerblue;
+}
+
+.form-field input[type=text]::placeholder {
+  font-size: 1.5rem;
+  color: cornflowerblue;
+}
+
+.form-field textarea {
+  border: 1px solid rgb(93, 112, 148);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  color: rgb(93, 112, 148);
+  resize: none;
+}
+
+.form-field input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: cornflowerblue;
+  margin-right: 1rem;
+}
+
+.checkbox-field {
+  flex-direction: row;
+  align-items: center;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: black;
+  color: white;
+  border: 2px solid rgb(100, 100, 100);
+}
+
+button:hover {
+  background-color: rgb(100, 100, 100);
+  border: 2px solid black;
+}
+
+p {
+  text-align: center;
+  margin-top: 2rem;
+  text-transform: uppercase;
+  text-decoration: underline;
+  font-style: italic;
+  font-weight: bold;
 }
 
 .green {
