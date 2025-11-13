@@ -1,6 +1,7 @@
 import { useState } from "react"
 
 function App() {
+  //API endpoint
   const endpoint = 'https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts'
 
   const [formData, setFormData] = useState({
@@ -10,10 +11,20 @@ function App() {
     public: false
   })
 
+  //add variable to reset the status of the object when submit the form
+  const [resetData, setResetData] = useState(formData)
+
+
+  //function to handle the form submit
   function handleSubmit(e) {
+    //reset default action on submit
     e.preventDefault()
+
+    //print in console the object to see what i am submitting
     console.log(formData);
 
+    //reset object status with his static copy
+    setFormData(resetData)
   }
 
   return (
