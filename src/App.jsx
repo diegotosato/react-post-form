@@ -10,6 +10,10 @@ function App() {
     public: true
   })
 
+  function handleSubmit(e) {
+    e.preventDefault()
+  }
+
   return (
     <>
       <h1>Form multifields</h1>
@@ -19,7 +23,7 @@ function App() {
       <br />
       <br />
 
-      <form>
+      <form onSubmit={handleSubmit}>
 
         {/* Author */}
         <div>
@@ -44,6 +48,8 @@ function App() {
           <input type="checkbox" name="public" />
           <label htmlFor="public">Post must be public</label>
         </div>
+
+        <button type="submit">Send</button>
 
       </form>
     </>
