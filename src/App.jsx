@@ -1,4 +1,5 @@
 import { useState } from "react"
+import axios from "axios"
 
 function App() {
   //API endpoint
@@ -25,6 +26,22 @@ function App() {
 
     //reset object status with his static copy
     setFormData(resetData)
+
+    //Ajax Call on submit
+    axios.post(endpoint, formData, {
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then(res => {
+        console.log(res);
+
+        if (res.status === 201) {
+          console.log('success');
+          console.log(formData);
+        }
+      })
+      .catch(err =>
+        console.log(err.message)
+      )
   }
 
   return (
