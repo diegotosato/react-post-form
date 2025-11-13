@@ -16,6 +16,10 @@ function App() {
   const [resetData, setResetData] = useState(formData)
 
 
+  //add variable to manage a message if the ajax call is success
+  const [message, setMessage] = useState(null)
+
+
   //function to handle the form submit
   function handleSubmit(e) {
     //reset default action on submit
@@ -37,6 +41,7 @@ function App() {
         if (res.status === 201) {
           console.log('success');
           console.log(formData);
+          setMessage(true)
         }
       })
       .catch(err =>
@@ -82,6 +87,12 @@ function App() {
         <button type="submit">Send</button>
 
       </form>
+
+
+
+      {
+        message && <p>Form send successfully</p>
+      }
     </>
   )
 }
